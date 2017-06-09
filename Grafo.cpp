@@ -40,7 +40,6 @@ void Grafo::cargar_archivos(){
         str = new char[max];
         verticesConteo.getline(str,max,'\n');
         if(!strcmp(str,"")){
-            cout << n ;
             inicializarAtributos(n);
             break;
         }
@@ -63,7 +62,6 @@ void Grafo::cargar_archivos(){
         nombres[i++] = str;
     }
     
-
     //Leer los pesos de las aristas entre los nodos del archivo de aristas
     int fila, columna;
     while(1){
@@ -72,27 +70,19 @@ void Grafo::cargar_archivos(){
         aristas.getline(str, max, ',');
         if(!strcmp(str,""))//Ya leyó hasta fin de archivo
             break;
-        cout << str << endl;
         fila = pos_de_id(str);
         
         //leer segundo id y sacar su posición
         aristas.getline(str, max, ',');
-        cout << str << endl;
         columna = pos_de_id(str);
         
         //leer el peso de la arista (leo hasta fin de línea porque es el ultimo dato)
         aristas.getline(str, max, '\n');
-        cout << str << endl;
         matriz[fila][columna] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas
         
     }
     print_matriz();
-    
-    
-    //for (int i = 0; i < cantVertices; i++){
-        //cout << "id: "<<ids[i]<<" -> ";        //para verificar que todos los datos fueron leídos correctamente
-        //cout << "nombre: "<<nombres[i]<<endl;
-    //}
+
 }
 
 int Grafo::str_to_int(char* str){
@@ -124,6 +114,7 @@ void Grafo::printVertices(){
 }
 
 void Grafo::inicializarAtributos(int cantVertices){
+    this->cantVertices=cantVertices;
     ids = new char*[cantVertices];
     nombres = new char*[cantVertices];
     matriz = new int*[cantVertices];
