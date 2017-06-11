@@ -81,7 +81,7 @@ void Grafo::cargar_archivos(){
         aristas.getline(str, max, '\n');
         //El grafo no es dirigido -> toda arista es bidireccional
         matriz[fila][columna] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas
-        matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
+        //matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
     }
     //print_matriz();
 
@@ -181,6 +181,8 @@ void Grafo::colorear(){
 
 void Grafo::floyd(){
 	
+	inicializarMatrizCaminos();
+	
 	int i, j, k;
 	
     for(k = 0; k < cantVertices; k++){
@@ -191,6 +193,7 @@ void Grafo::floyd(){
                     if((matriz[i][k] + matriz[k][j] < matriz[i][j]) || (matriz[i][j] == 0)){//valida que se pueda mejorar la 
                                                                                             //casilla                        
                         matriz[i][j] = matriz[i][k] + matriz[k][j];
+                        matrizCaminos[i][j] = ids[k];
                     }
                 }
             }
@@ -203,6 +206,11 @@ void Grafo::floyd(){
             cout << matriz[i][j] << "\t";
         }
     }
+    
+    cout << endl;
+    printMatrizCaminos();
+    cout << endl;
+    mostrarRutas();
 }
 
 void Grafo::inicializarMatrizCaminos(){ //inicializa las columnas iguales 
@@ -214,7 +222,6 @@ void Grafo::inicializarMatrizCaminos(){ //inicializa las columnas iguales
 }
 
 void Grafo::printMatrizCaminos(){
-	inicializarMatrizCaminos();
 	for(int i = 0; i < cantVertices; i++){
 		cout << endl;
 		for(int j = 0; j < cantVertices; j++){
@@ -222,5 +229,21 @@ void Grafo::printMatrizCaminos(){
 		}
 	}
 }	
+
+void Grafo::mostrarRutas(){
+	cout << endl;
+	for(int i = 0; i < cantVertices; i++){
+		for (int j = 0; j < cantVertices; j++){
+			cout << ids[i] << "---" << ids[j] << " = ";
+			int tmp = i;
+			while(matrizCaminos[i][j] != ids[j]){
+				cout << matrizCaminos[i][j];
+				i = pos_de_id(matrizCaminos[i][j]);
+			}
+			cout << matrizCaminos[i][j] << endl;
+			i = tmp;
+		}
+	}
+}
 
 

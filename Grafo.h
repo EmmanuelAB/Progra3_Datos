@@ -89,8 +89,7 @@ class Grafo{
         /** @brief Se encarga de llenar la matriz de caminos y dejarla lista para empezar floyd */
         void inicializarMatrizCaminos();
         
-
-        
+        void mostrarRutas();
         
 };
 #endif
