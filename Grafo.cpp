@@ -46,6 +46,8 @@ void Grafo::cargar_archivos(){
         }
         n++;
     }
+        
+
     delete str; // Sólo se usó para contar
     //Leer ID's y nombre de los nodos del archivo de vertices
     int i=0;
@@ -62,7 +64,6 @@ void Grafo::cargar_archivos(){
         verticesLectura.getline(str, max, '\n'); //para el segundo (nombre) hasta el cambio de línea
         nombres[i++] = str;
     }
-    
     //Leer los pesos de las aristas entre los nodos del archivo de aristas
     int fila, columna;
     while(1){
@@ -81,7 +82,7 @@ void Grafo::cargar_archivos(){
         aristas.getline(str, max, '\n');
         //El grafo no es dirigido -> toda arista es bidireccional
         matriz[fila][columna] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas
-        //matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
+        matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
     }
     //print_matriz();
 

@@ -8,7 +8,7 @@ int main(){
     Grafo g;
     g.cargar_archivos();
     int opcion;
-    cout << "Indique cual algoritmo desea ejecutar:\n\n1)Coloreo de grafos\n2)FLoyd-Warshall" << endl;
+    cout << "Indique cual algoritmo desea ejecutar:\n\n1)Coloreo de grafos\n2)Floyd-Warshall" << endl;
     cout << "-> ";
     cin >> opcion;
     if(opcion == 2){
