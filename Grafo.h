@@ -83,8 +83,10 @@ class Grafo{
         */
         bool vecinoTieneColor(int posNodo, int color, int* colores);
         
+        /** @brief Imprime la matriz de caminos mínimos entre todo par de nodos */
         void printMatrizCaminos();
         
+        /** @brief Se encarga de llenar la matriz de caminos y dejarla lista para empezar floyd */
         void inicializarMatrizCaminos();
         
 
