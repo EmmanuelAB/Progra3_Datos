@@ -6,16 +6,18 @@ Grafo::Grafo(){
 }
 
 Grafo::~Grafo(){
+    
     for (int i = 0; i < cantVertices; i++){
         delete ids[i];
         delete matriz[i];
         delete nombres[i];
-        delete matrizCaminos[i];
+        delete[] matrizCaminos[i];
     }
     
     delete[] ids;
     delete[] nombres;
     delete[] matriz;
+    delete[] matrizCaminos;
 }
 
 int Grafo::pos_de_id(char* id){
@@ -55,8 +57,10 @@ void Grafo::cargar_archivos(){
         //Leer el id del vertice hasta coma
         str = new char[max];
         verticesLectura.getline(str, max, ','); //para el primer dato (id) leo hasta la coma
-        if(!strcmp(str,""))//Ya leyó hasta fin de archivo
+        if(!strcmp(str,"")){//Ya leyó hasta fin de archivo
+            delete str;
             break;
+        }
         ids[i] = str;
         
         //Leer el nombre del vértice hasta fin de línea
