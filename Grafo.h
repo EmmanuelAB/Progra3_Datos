@@ -61,7 +61,12 @@ class Grafo{
         
         /** @brief Inicializa los atributos del grafo (matriz, ids, nombres) según la cantidad(válida) de vértices ingresada*/
         void inicializarAtributos(int cantVertices);
-    
+        
+        /** @brief Colorea el grafo e imprime la matriz de adyacencia */
+        void colorear();
+        
+        bool vecinoTieneColor(int posNodo, int color, int* colores);
+        
 
         
         

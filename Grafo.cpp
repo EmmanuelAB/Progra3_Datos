@@ -79,7 +79,7 @@ void Grafo::cargar_archivos(){
         //leer el peso de la arista (leo hasta fin de línea porque es el ultimo dato)
         aristas.getline(str, max, '\n');
         matriz[fila][columna] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas
-        
+        matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
     }
     print_matriz();
 
@@ -97,9 +97,15 @@ int Grafo::str_to_int(char* str){
 }
 
 void Grafo::print_matriz(){
+    printf("-- |");
+    for (int i = 0; i < cantVertices; i++){
+        printf("%.2d|", i);
+    }
+    cout << endl;
     for (int f = 0; f < cantVertices; f++){
+        printf("%.2d |",f);
         for (int c = 0; c < cantVertices; c++){
-            cout << matriz[f][c] << " ";
+            printf("%.2d ",matriz[f][c]);
         }
         cout << endl;
     }
@@ -121,4 +127,44 @@ void Grafo::inicializarAtributos(int cantVertices){
     for (int i = 0; i < cantVertices; i++){
         matriz[i] = new int[cantVertices];
     }
+}
+
+bool Grafo::vecinoTieneColor(int posNodo, int color, int* colores){
+    if(posNodo<0 || cantVertices <= posNodo){
+        cout << "Se ingresó una posición de nodo inválida" << endl;
+        return -1;
+    }
+    for (int i = 0; i < cantVertices; i++){   
+        if(matriz[posNodo][i]){ //Hay adyacencia
+            if(colores[i]==color)//i es las pos del nodo con el que hay adyacencia
+                return true;
+        }
+              
+    }   
+    return false;
+}
+
+void Grafo::colorear(){
+    int matriz[cantVertices][cantVertices] = {0};
+    int colores[cantVertices] = {0}; //contiene el color de cada vértice
+    int colorActual = 1;
+    for (int nodo = 0; nodo < cantVertices; nodo++){
+        for (int c = 1; c <= colorActual; c++){
+        
+            if(vecinoTieneColor(nodo,c,colores)){
+                colores[nodo]=++colorActual; //Hay que usar color nuevo 
+            }
+            else{
+                colores[nodo]=colorActual; //Se puede usar el color anterior
+            }
+        }
+    }
+    
+    cout <<cantVertices<< "[";
+    for (int i = 0; i < cantVertices-1; i++){
+        cout << colores[i]<<" - ";
+    }
+    cout <<colores[cantVertices-1]<<"]"<<endl;
+    
+    
 }
