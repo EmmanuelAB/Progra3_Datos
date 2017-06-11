@@ -146,7 +146,7 @@ bool Grafo::vecinoTieneColor(int posNodo, int color, int* colores){
 
 void Grafo::colorear(){
     int matriz[cantVertices][cantVertices] = {0};
-    int colores[cantVertices] = {0}; //contiene el color de cada vértice
+    int colores[cantVertices] = {0}; //contiene el color de cada vértice, es decir colores[i] es el color del nodo en ids[i]
     int colorActual = 1;
     for (int nodo = 0; nodo < cantVertices; nodo++){
         bool colorUsado=false;
