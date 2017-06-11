@@ -149,18 +149,20 @@ void Grafo::colorear(){
     int colores[cantVertices] = {0}; //contiene el color de cada vértice
     int colorActual = 1;
     for (int nodo = 0; nodo < cantVertices; nodo++){
+        bool colorUsado=false;
         for (int c = 1; c <= colorActual; c++){
-        
-            if(vecinoTieneColor(nodo,c,colores)){
-                colores[nodo]=++colorActual; //Hay que usar color nuevo 
-            }
-            else{
-                colores[nodo]=colorActual; //Se puede usar el color anterior
+            if(!vecinoTieneColor(nodo,c,colores)){
+                colores[nodo]=c; //Hay que usar color nuevo
+                colorUsado=true;
+                break;
             }
         }
+        if(!colorUsado)
+            colores[nodo]=++colorActual; //Se puede usar el color anterior
+        
     }
     
-    cout <<cantVertices<< "[";
+    cout << "[";
     for (int i = 0; i < cantVertices-1; i++){
         cout << colores[i]<<" - ";
     }
