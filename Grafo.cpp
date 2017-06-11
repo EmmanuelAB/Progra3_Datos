@@ -20,7 +20,7 @@ Grafo::~Grafo(){
 
 int Grafo::pos_de_id(char* id){
     for (int i = 0; i < cantVertices; i++){
-        if(!strcmp(ids[i],id)){
+        if(!strcmp(ids[i],id)){ //Si son iguales retorna 0 al negarlo es 1, es decir, "if(son iguales)"
             return i;
         }
     }
@@ -30,23 +30,23 @@ int Grafo::pos_de_id(char* id){
 void Grafo::cargar_archivos(){
 
     ifstream aristas("aristas.csv");   //Se crean las instancias de los dos archivos a leer 
-    ifstream verticesLectura("vertices.csv"); 
-    ifstream verticesConteo("vertices.csv");
+    ifstream verticesLectura("vertices.csv"); //Una instancia para contar la cantidad de vértices
+    ifstream verticesConteo("vertices.csv"); //y la otra para leerlos
     
     char* str;//Para las lecturas temporales de los archivos 
     
     //Contar la cantidad de vértices
     int n = 0;
+    str = new char[max];
     while(1){
-        str = new char[max];
         verticesConteo.getline(str,max,'\n');
-        if(!strcmp(str,"")){
+        if(!strcmp(str,"")){ //si ya no se leyó nada (fin de archivo)
             inicializarAtributos(n);
             break;
         }
         n++;
     }
-    
+    delete str; // Sólo se usó para contar
     //Leer ID's y nombre de los nodos del archivo de vertices
     int i=0;
     while(1){
@@ -79,6 +79,7 @@ void Grafo::cargar_archivos(){
         
         //leer el peso de la arista (leo hasta fin de línea porque es el ultimo dato)
         aristas.getline(str, max, '\n');
+        //El grafo no es dirigido -> toda arista es bidireccional
         matriz[fila][columna] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas
         matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
     }
@@ -91,7 +92,7 @@ int Grafo::str_to_int(char* str){
     int res = 0; //el resultado de salida 
     int len = strlen(str);
     for (int i = len-1; 0 <= i; i--){
-        res += (str[i]-'0')*mult;
+        res += (str[i]-'0')*mult; //paso el char a entero, lo multiplico por mul y lo sumo al acumulado
         mult*=10; //aumento el multiplicador
     }
     return res;
@@ -157,19 +158,18 @@ void Grafo::colorear(){
     int colorActual = 1;
     for (int nodo = 0; nodo < cantVertices; nodo++){
         bool colorUsado=false;
-        for (int c = 1; c <= colorActual; c++){
+        for (int c = 1; c <= colorActual; c++){ //itero con los colores ya usado a ver si alguno sirve
             if(!vecinoTieneColor(nodo,c,colores)){
                 colores[nodo]=c; //Hay que usar color nuevo
                 colorUsado=true;
                 break;
             }
         }
-        if(!colorUsado)
-            colores[nodo]=++colorActual; //Se puede usar el color anterior
+        if(!colorUsado)//No se pudo reutilizar color
+            colores[nodo]=++colorActual; //Hay que usar color nuevo
         
     }
-    
-    
+    //imprimir los colores que le quedaron a cada vértice 
     cout << "[";
     for (int i = 0; i < cantVertices-1; i++){
         cout << colores[i]<<" - ";
@@ -186,15 +186,17 @@ void Grafo::floyd(){
     for(k = 0; k < cantVertices; k++){
         for (i = 0; i < cantVertices; i++){
             for (j = 0; j < cantVertices; j++){
-                if((matriz[i][k] * matriz[k][j] != 0) && (i != j)){
-                    if((matriz[i][k] + matriz[k][j] < matriz[i][j]) || (matriz[i][j] == 0)){
+                if((matriz[i][k] * matriz[k][j] != 0) && (i != j)){ //valida que no haya elemento absorvente y que no se está
+                                                                    //en la diagonal
+                    if((matriz[i][k] + matriz[k][j] < matriz[i][j]) || (matriz[i][j] == 0)){//valida que se pueda mejorar la 
+                                                                                            //casilla                        
                         matriz[i][j] = matriz[i][k] + matriz[k][j];
                     }
                 }
             }
         }
     }
-    
+    //Imprime el resultado de la matriz de costos 
     for (i = 0; i < cantVertices; i++){
         cout << "\nMinimum Cost With Respect to Node:" << i << endl;
         for (j = 0; j < cantVertices; j++){
@@ -203,7 +205,7 @@ void Grafo::floyd(){
     }
 }
 
-void Grafo::inicializarMatrizCaminos(){
+void Grafo::inicializarMatrizCaminos(){ //inicializa las columnas iguales 
 	for (int i = 0; i < cantVertices; i++){
 		for(int j = 0; j < cantVertices; j++){
 			matrizCaminos[i][j] = ids[j];
