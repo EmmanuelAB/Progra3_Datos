@@ -10,6 +10,7 @@ Grafo::~Grafo(){
         delete ids[i];
         delete matriz[i];
         delete nombres[i];
+        delete matrizCaminos[i];
     }
     
     delete[] ids;
@@ -81,7 +82,7 @@ void Grafo::cargar_archivos(){
         matriz[fila][columna] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas
         matriz[columna][fila] = str_to_int(str); //guardo la arista convertida a entero en la matriz de aristas        
     }
-    print_matriz();
+    //print_matriz();
 
 }
 
@@ -123,6 +124,12 @@ void Grafo::inicializarAtributos(int cantVertices){
     this->cantVertices=cantVertices;
     ids = new char*[cantVertices];
     nombres = new char*[cantVertices];
+    
+    matrizCaminos = new char**[cantVertices];
+    for(int i = 0; i < cantVertices; i++){
+		matrizCaminos[i]= new char*[cantVertices];
+	}
+	
     matriz = new int*[cantVertices];
     for (int i = 0; i < cantVertices; i++){
         matriz[i] = new int[cantVertices];
@@ -162,11 +169,56 @@ void Grafo::colorear(){
         
     }
     
+    
     cout << "[";
     for (int i = 0; i < cantVertices-1; i++){
         cout << colores[i]<<" - ";
     }
     cout <<colores[cantVertices-1]<<"]"<<endl;
-    
-    
+	
+	
 }
+
+void Grafo::floyd(){
+	
+	int i, j, k;
+	
+    for(k = 0; k < cantVertices; k++){
+        for (i = 0; i < cantVertices; i++){
+            for (j = 0; j < cantVertices; j++){
+                if((matriz[i][k] * matriz[k][j] != 0) && (i != j)){
+                    if((matriz[i][k] + matriz[k][j] < matriz[i][j]) || (matriz[i][j] == 0)){
+                        matriz[i][j] = matriz[i][k] + matriz[k][j];
+                    }
+                }
+            }
+        }
+    }
+    
+    for (i = 0; i < cantVertices; i++){
+        cout << "\nMinimum Cost With Respect to Node:" << i << endl;
+        for (j = 0; j < cantVertices; j++){
+            cout << matriz[i][j] << "\t";
+        }
+    }
+}
+
+void Grafo::inicializarMatrizCaminos(){
+	for (int i = 0; i < cantVertices; i++){
+		for(int j = 0; j < cantVertices; j++){
+			matrizCaminos[i][j] = ids[j];
+		}
+	}
+}
+
+void Grafo::printMatrizCaminos(){
+	inicializarMatrizCaminos();
+	for(int i = 0; i < cantVertices; i++){
+		cout << endl;
+		for(int j = 0; j < cantVertices; j++){
+			cout << matrizCaminos[i][j] << " ";
+		}
+	}
+}	
+
+

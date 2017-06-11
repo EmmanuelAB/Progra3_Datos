@@ -18,6 +18,9 @@ class Grafo{
         /** @brief El número de vértices que tiene el grafo */
         int cantVertices;
         
+        /** @brief Matriz de caminos para el algoritmo de Floyd */
+        char*** matrizCaminos;
+        
         /** @brief Es la matriz de adyacencia, contiene el peso de cada arista */
         int** matriz;
         
@@ -65,7 +68,14 @@ class Grafo{
         /** @brief Colorea el grafo e imprime la matriz de adyacencia */
         void colorear();
         
+        /** @brief Saca los mejores caminos para todo par de vertices e imprime los caminos */
+        void floyd();
+        
         bool vecinoTieneColor(int posNodo, int color, int* colores);
+        
+        void printMatrizCaminos();
+        
+        void inicializarMatrizCaminos();
         
 
         

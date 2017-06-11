@@ -7,7 +7,7 @@ using namespace std;
 int main(){
     Grafo g;
     g.cargar_archivos();
-    g.colorear();
+    g.floyd();
     return 0;
 }
 
