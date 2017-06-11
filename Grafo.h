@@ -68,9 +68,19 @@ class Grafo{
         /** @brief Colorea el grafo e imprime la matriz de adyacencia */
         void colorear();
         
+
         /** @brief Saca los mejores caminos para todo par de vertices e imprime los caminos */
         void floyd();
         
+
+        /** @brief Sirve para averiguar si el nodo en **posNodo** tiene algún otro nodo adyacente con el color **color** 
+         *  @param posNodo Es la posición en el arreglo del nodo al cual se le van buscar los adyacentes
+         *  @param color   Es el número que representa el color contra el cual se va a comparar
+         *  @param colores Es el puntero correspondiente al arreglo de los colores de cada nodo. Es decir colores[i] debe ser
+         *                 el color que tiene el nodo con **id** = ids[i]
+         *  @return retorna true si el nodo tiene almenos un vecino con el color **color**  o false si ningún vecino 
+         *          es de ese color
+        */
         bool vecinoTieneColor(int posNodo, int color, int* colores);
         
         void printMatrizCaminos();

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]]
+  ['inicializaratributos',['inicializarAtributos',['../class_grafo.html#ab0ecde07ea016a3d7b35d90a2b15c258',1,'Grafo']]]
 ];

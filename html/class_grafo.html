@@ -112,6 +112,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9cd835e13664224268e32af59a41cbeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a9cd835e13664224268e32af59a41cbeb">print_matriz</a> ()</td></tr>
 <tr class="memdesc:a9cd835e13664224268e32af59a41cbeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime la matriz de adyacencia.  <a href="#a9cd835e13664224268e32af59a41cbeb">More...</a><br /></td></tr>
 <tr class="separator:a9cd835e13664224268e32af59a41cbeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f6cb77ac0338ab4e308274e7c86e9da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a8f6cb77ac0338ab4e308274e7c86e9da">printVertices</a> ()</td></tr>
+<tr class="memdesc:a8f6cb77ac0338ab4e308274e7c86e9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime la lista de los ID's de los vértices en el grafo y su nombre asociado.  <a href="#a8f6cb77ac0338ab4e308274e7c86e9da">More...</a><br /></td></tr>
+<tr class="separator:a8f6cb77ac0338ab4e308274e7c86e9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ecde07ea016a3d7b35d90a2b15c258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#ab0ecde07ea016a3d7b35d90a2b15c258">inicializarAtributos</a> (int <a class="el" href="class_grafo.html#a36f71f4e5d3251f5e823428879aa465a">cantVertices</a>)</td></tr>
+<tr class="memdesc:ab0ecde07ea016a3d7b35d90a2b15c258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa los atributos del grafo (matriz, ids, nombres) según la cantidad(válida) de vértices ingresada.  <a href="#ab0ecde07ea016a3d7b35d90a2b15c258">More...</a><br /></td></tr>
+<tr class="separator:ab0ecde07ea016a3d7b35d90a2b15c258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad38b5ee1a17b38872a710f58a134faea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#ad38b5ee1a17b38872a710f58a134faea">colorear</a> ()</td></tr>
+<tr class="memdesc:ad38b5ee1a17b38872a710f58a134faea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Colorea el grafo e imprime la matriz de adyacencia.  <a href="#ad38b5ee1a17b38872a710f58a134faea">More...</a><br /></td></tr>
+<tr class="separator:ad38b5ee1a17b38872a710f58a134faea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c1dab1c57f65277084b059c9246e77"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a14c1dab1c57f65277084b059c9246e77">vecinoTieneColor</a> (int posNodo, int color, int *colores)</td></tr>
+<tr class="memdesc:a14c1dab1c57f65277084b059c9246e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sirve para averiguar si el nodo en <b>posNodo</b> tiene algún otro nodo adyacente con el color <b>color</b>  <a href="#a14c1dab1c57f65277084b059c9246e77">More...</a><br /></td></tr>
+<tr class="separator:a14c1dab1c57f65277084b059c9246e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -183,6 +195,41 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad38b5ee1a17b38872a710f58a134faea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Grafo::colorear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Colorea el grafo e imprime la matriz de adyacencia. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab0ecde07ea016a3d7b35d90a2b15c258"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Grafo::inicializarAtributos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cantVertices</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa los atributos del grafo (matriz, ids, nombres) según la cantidad(válida) de vértices ingresada. </p>
+
+</div>
+</div>
 <a class="anchor" id="abc2434ecfea2069c39b835bccc2a831b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -225,6 +272,23 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8f6cb77ac0338ab4e308274e7c86e9da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Grafo::printVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Imprime la lista de los ID's de los vértices en el grafo y su nombre asociado. </p>
+
+</div>
+</div>
 <a class="anchor" id="aa654fe9412c1b2e15994efca1a758913"></a>
 <div class="memitem">
 <div class="memproto">
@@ -247,6 +311,49 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Retorna el valor entero del string </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a14c1dab1c57f65277084b059c9246e77"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Grafo::vecinoTieneColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>posNodo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>colores</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sirve para averiguar si el nodo en <b>posNodo</b> tiene algún otro nodo adyacente con el color <b>color</b> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">posNodo</td><td>Es la posición en el arreglo del nodo al cual se le van buscar los adyacentes </td></tr>
+    <tr><td class="paramname">color</td><td>Es el número que representa el color contra el cual se va a comparar </td></tr>
+    <tr><td class="paramname">colores</td><td>Es el puntero correspondiente al arreglo de los colores de cada nodo. Es decir colores[i] debe ser el color que tiene el nodo con <b>id</b> = ids[i] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>retorna true si el nodo tiene almenos un vecino con el color <b>color</b> o false si ningún vecino es de ese color </dd></dl>
 
 </div>
 </div>
