@@ -169,12 +169,13 @@ void Grafo::colorear(){
             colores[nodo]=++colorActual; //Hay que usar color nuevo
         
     }
-    //imprimir los colores que le quedaron a cada vértice 
-    cout << "[";
+    //imprimir los colores que le quedaron a cada vértice
+    cout << "\nLista de colores" << endl;
+    cout << "-----------------" << endl; 
     for (int i = 0; i < cantVertices-1; i++){
-        cout << colores[i]<<" - ";
+        cout << "Vértice " << nombres[i] << " con id " << ids[i] << " tiene color "<< colores[i] << endl;
     }
-    cout <<colores[cantVertices-1]<<"]"<<endl;
+    cout << "Vértice " << nombres[cantVertices-1] << " con id " << ids[cantVertices-1] << " tiene color "<< colores[cantVertices-1] << endl;
 	
 	
 }
@@ -190,7 +191,7 @@ void Grafo::floyd(){
             for (j = 0; j < cantVertices; j++){
                 if((matriz[i][k] * matriz[k][j] != 0) && (i != j)){ //valida que no haya elemento absorvente y que no se está
                                                                     //en la diagonal
-                    if((matriz[i][k] + matriz[k][j] < matriz[i][j]) || (matriz[i][j] == 0)){//valida que se pueda mejorar la 
+                    if((matriz[i][k] + matriz[k][j] < matriz[i][j]) || (matriz[i][j] == 0)){//valida si se pueda mejorar la 
                                                                                             //casilla                        
                         matriz[i][j] = matriz[i][k] + matriz[k][j];
                         matrizCaminos[i][j] = ids[k];
@@ -200,16 +201,17 @@ void Grafo::floyd(){
         }
     }
     //Imprime el resultado de la matriz de costos 
+    cout << "Resultado: Costos" << endl;
     for (i = 0; i < cantVertices; i++){
-        cout << "\nMinimum Cost With Respect to Node:" << i << endl;
+        cout << "\nCostos desde vértice:" << ids[i] << "\n";
+        cout << "---------------------" << endl;
         for (j = 0; j < cantVertices; j++){
-            cout << matriz[i][j] << "\t";
+			cout << "Vértice:" << ids[j] << " costo:";
+            cout << matriz[i][j] << "    ";
         }
+        cout << endl;
     }
     
-    cout << endl;
-    printMatrizCaminos();
-    cout << endl;
     mostrarRutas();
 }
 
@@ -222,22 +224,37 @@ void Grafo::inicializarMatrizCaminos(){ //inicializa las columnas iguales
 }
 
 void Grafo::printMatrizCaminos(){
+	cout << "\n\nMatriz Caminos" << endl;
+	cout << "---------------\n" << endl;
+	cout << "  ";
+	for(int x = 0; x < cantVertices; x++){
+		cout << ids[x] << " ";
+	}
 	for(int i = 0; i < cantVertices; i++){
 		cout << endl;
+		cout << ids[i] << "|";
 		for(int j = 0; j < cantVertices; j++){
 			cout << matrizCaminos[i][j] << " ";
 		}
 	}
+	cout << "\n\n";
 }	
 
 void Grafo::mostrarRutas(){
+	
+	printMatrizCaminos();
 	cout << endl;
+	
+	cout << "Rutas con los mejores caminos" << endl;
+	
 	for(int i = 0; i < cantVertices; i++){
+		cout << "-----------------------------" << endl;
 		for (int j = 0; j < cantVertices; j++){
-			cout << ids[i] << "---" << ids[j] << " = ";
+			cout << "Arista " << ids[i] << " hacia " << "Arista " << ids[j] << " pasa por ";
 			int tmp = i;
 			while(matrizCaminos[i][j] != ids[j]){
 				cout << matrizCaminos[i][j];
+				cout << "-";
 				i = pos_de_id(matrizCaminos[i][j]);
 			}
 			cout << matrizCaminos[i][j] << endl;
